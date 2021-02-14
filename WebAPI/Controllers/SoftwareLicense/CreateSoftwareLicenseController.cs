@@ -27,7 +27,6 @@ namespace CTI.Asset.Management.WebAPI.Controllers.SoftwareLicense
         [HttpPost]
         public IActionResult Handle(CreateSoftwareLicenseRequest request)
         {
-            Console.Write("Sucess");
             var softwareLicenseDto = new CreateSoftwareLicenseDto
             {
                 ActivationKey = new SoftwareLicenseActivationKey(request.ActivationKey)
