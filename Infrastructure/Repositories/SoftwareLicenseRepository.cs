@@ -12,13 +12,14 @@ namespace CTI.Asset.Management.Infrastructure.Repositories
 
         public SoftwareLicenseRepository(ApplicationContext context)
         {
-            this._context = context;
+            _context = context;
         }
         public async Task<SoftwareLicenseModel> CreateSoftwareLicense(SoftwareLicense softwareLicense)
         {
             var softwareLicenseModel = SoftwareLicenseModel.ToModel(softwareLicense);
             await _context.Database.BeginTransactionAsync();
             await _context.Set<SoftwareLicenseModel>().AddAsync(softwareLicenseModel);
+            await _context.SaveChangesAsync();
             await _context.Database.CommitTransactionAsync();
             return softwareLicenseModel;
         }

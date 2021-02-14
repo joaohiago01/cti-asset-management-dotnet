@@ -13,11 +13,6 @@
 
   <ItemGroup>
     <None Remove="Properties\launchSettings.json" />
-    <None Include="WebAPI\launchSettings.json">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      <CopyToPublishDirectory>Never</CopyToPublishDirectory>
-      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-    </None>
   </ItemGroup>
 
   <ItemGroup>
@@ -46,6 +41,11 @@
         </PackageReference>
         <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="6.0.5" />
         <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="6.0.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Application\UseCases\SoftwareLicenseUseCases\Command" />
+    <Folder Include="Application\UseCases\SoftwareLicenseUseCases\Queries" />
   </ItemGroup>
 
 </Project>

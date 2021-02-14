@@ -1,7 +1,9 @@
-﻿namespace CTI.Asset.Management.Domain.Shared
+﻿using System.Threading.Tasks;
+
+namespace CTI.Asset.Management.Domain.Shared
 {
     public interface IDomainEventService
     {
-        void Publish(DomainEvent domainEvent);
+        Task Publish(DomainEvent domainEvent);
     }
 }

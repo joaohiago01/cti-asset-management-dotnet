@@ -6,7 +6,6 @@ C:\Users\Cliente\Downloads\Projects\CTI.Asset.Management\obj\Debug\net5.0\CTI.As
 C:\Users\Cliente\Downloads\Projects\CTI.Asset.Management\obj\Debug\net5.0\CTI.Asset.Management.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\Cliente\Downloads\Projects\CTI.Asset.Management\bin\Debug\net5.0\WebAPI\appsettings.Development.json
 C:\Users\Cliente\Downloads\Projects\CTI.Asset.Management\bin\Debug\net5.0\WebAPI\appsettings.Production.json
-C:\Users\Cliente\Downloads\Projects\CTI.Asset.Management\bin\Debug\net5.0\WebAPI\launchSettings.json
 C:\Users\Cliente\Downloads\Projects\CTI.Asset.Management\bin\Debug\net5.0\CTI.Asset.Management.exe
 C:\Users\Cliente\Downloads\Projects\CTI.Asset.Management\bin\Debug\net5.0\CTI.Asset.Management.deps.json
 C:\Users\Cliente\Downloads\Projects\CTI.Asset.Management\bin\Debug\net5.0\CTI.Asset.Management.runtimeconfig.json

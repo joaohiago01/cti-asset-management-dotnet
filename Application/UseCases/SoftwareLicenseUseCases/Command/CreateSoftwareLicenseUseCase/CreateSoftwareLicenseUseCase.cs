@@ -6,7 +6,7 @@ using CTI.Asset.Management.Domain.Entities;
 using CTI.Asset.Management.Domain.Event;
 using CTI.Asset.Management.Domain.ValueObjects;
 
-namespace CTI.Asset.Management.Application.UseCases.SoftwareLicenseUseCases.CreateSoftwareLicenseUseCase
+namespace CTI.Asset.Management.Application.UseCases.SoftwareLicenseUseCases.Command.CreateSoftwareLicenseUseCase
 {
     public class CreateSoftwareLicenseUseCase : ICreateSoftwareLicenseUseCase
     {
@@ -30,7 +30,7 @@ namespace CTI.Asset.Management.Application.UseCases.SoftwareLicenseUseCases.Crea
                 throw new InternalError();
             }
             
-            softwareLicense.DomainEvents.Add(new SoftwareLicenseCreateEvent(softwareLicense));
+            softwareLicense.DomainEvents.Add(new SoftwareLicenseCreatedEvent(softwareLicense));
 
             var readSoftwareLicense = new ReadSoftwareLicenseDto
             {

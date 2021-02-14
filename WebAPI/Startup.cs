@@ -1,11 +1,7 @@
-using CTI.Asset.Management.Application.Contracts.Repositories;
-using CTI.Asset.Management.Application.UseCases.SoftwareLicenseUseCases.CreateSoftwareLicenseUseCase;
-using CTI.Asset.Management.Domain.Shared;
+using CTI.Asset.Management.Application;
 using CTI.Asset.Management.Infrastructure;
-using CTI.Asset.Management.Infrastructure.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -20,21 +16,15 @@ namespace CTI.Asset.Management.WebAPI
             Configuration = configuration;
         }
 
-        public IConfiguration Configuration { get; set; }
-        public IHostEnvironment HostingEnvironment { get; }
+        private IConfiguration Configuration { get; set; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            var connectionString = Configuration["ConnectionStrings"];
-            services.AddDbContext<ApplicationContext>(optionsAction => optionsAction.UseNpgsql(connectionString));
-
-            services.AddTransient<IDomainEventService, DomainEventService>();
-            services.AddTransient<ISoftwareLicenseRepository, SoftwareLicenseRepository>();
-            services.AddTransient<ICreateSoftwareLicenseUseCase, CreateSoftwareLicenseUseCase>();
+            services.AddApplication();
+            services.AddInfrastructure(Configuration);
 
             services.AddSingleton(Configuration);
-            //services.AddSingleton(HostingEnvironment);
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -66,10 +56,12 @@ namespace CTI.Asset.Management.WebAPI
 
             app.UseAuthorization();
 
-            /*app.UseEndpoints(endpoints =>
+            app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllers();
-            });*/
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller}/{action=Index}/{id?}");
+            });
         }
     }
 }

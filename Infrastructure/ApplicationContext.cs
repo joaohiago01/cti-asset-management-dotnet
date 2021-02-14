@@ -8,11 +8,13 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CTI.Asset.Management.Infrastructure
 {
-    public class ApplicationContext : DbContext
+    public class ApplicationContext : DbContext, IApplicationContext
     {
         private readonly IDomainEventService _domainEventService;
 
-        public ApplicationContext(DbContextOptions<ApplicationContext> options, IDomainEventService domainEventService)
+        public ApplicationContext(
+            DbContextOptions<ApplicationContext> options,
+            IDomainEventService domainEventService)
             : base(options)
         {
             _domainEventService = domainEventService;
@@ -31,7 +33,9 @@ namespace CTI.Asset.Management.Infrastructure
             
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(ApplicationContext).Assembly);
         }
-        
+
+        public DbSet<SoftwareLicenseModel> SoftwareLicenses { get; set; }
+
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
         {
             foreach (var entry in ChangeTracker.Entries<AuditableEntity>())
