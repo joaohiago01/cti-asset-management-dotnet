@@ -13,8 +13,8 @@ namespace CTI.Asset.Management.WebAPI.Controllers.SoftwareLicense
     }
     
     [ApiController]
-    [Area("/SoftwareLicense")]
-    public class CreateSoftwareLicenseController : ControllerBase
+    [Area("/CreateSoftwareLicense")]
+    public class CreateSoftwareLicenseController : Controller
     {
         private readonly ICreateSoftwareLicenseUseCase _createSoftwareLicenseUseCase;
 
@@ -24,7 +24,7 @@ namespace CTI.Asset.Management.WebAPI.Controllers.SoftwareLicense
         }
         
         [HttpPost]
-        public IActionResult Handle(CreateSoftwareLicenseRequest request)
+        public IActionResult Execute(CreateSoftwareLicenseRequest request)
         {
             var softwareLicenseDto = new CreateSoftwareLicenseDto
             {

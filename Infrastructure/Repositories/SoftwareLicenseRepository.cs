@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using CTI.Asset.Management.Application.Contracts.Repositories;
 using CTI.Asset.Management.Domain.Entities;
@@ -24,24 +25,64 @@ namespace CTI.Asset.Management.Infrastructure.Repositories
             return softwareLicenseModel;
         }
 
-        public Task<SoftwareLicenseModel> EditSoftwareLicense(SoftwareLicense softwareLicense)
+        public async Task<SoftwareLicenseModel> EditSoftwareLicense(SoftwareLicense softwareLicense)
         {
-            throw new System.NotImplementedException();
+            var softwareLicenseModel = SoftwareLicenseModel.ToModel(softwareLicense);
+            await _context.Database.BeginTransactionAsync();
+            _context.Set<SoftwareLicenseModel>().Update(softwareLicenseModel);
+            await _context.SaveChangesAsync();
+            await _context.Database.CommitTransactionAsync();
+            return softwareLicenseModel;
         }
 
-        public void DeleteSoftwareLicense(SoftwareLicense softwareLicense)
+        public async void DeleteSoftwareLicense(SoftwareLicense softwareLicense)
         {
-            throw new System.NotImplementedException();
+            var softwareLicenseModel = SoftwareLicenseModel.ToModel(softwareLicense);
+            await _context.Database.BeginTransactionAsync();
+            _context.Set<SoftwareLicenseModel>().Remove(softwareLicenseModel);
+            await _context.SaveChangesAsync();
+            await _context.Database.CommitTransactionAsync();
         }
 
-        public Task<SoftwareLicenseModel> GetSoftwareLicense(SoftwareLicense softwareLicense)
+        public async Task<SoftwareLicenseModel> GetSoftwareLicense(string softwareLicenseId)
         {
-            throw new System.NotImplementedException();
+            await _context.Database.BeginTransactionAsync();
+            
+            var softwareLicenseModel =
+                (from model in _context.Set<SoftwareLicenseModel>()
+                where model.Id == softwareLicenseId
+                select model).FirstOrDefault();
+                
+            await _context.SaveChangesAsync();
+            await _context.Database.CommitTransactionAsync();
+            return softwareLicenseModel;
+        }
+        
+        public async Task<SoftwareLicenseModel> GetByActivationKey(string activationKey)
+        {
+            await _context.Database.BeginTransactionAsync();
+            
+            var softwareLicenseModel =
+                (from model in _context.Set<SoftwareLicenseModel>()
+                    where model.ActivationKey == activationKey
+                    select model).FirstOrDefault();
+                
+            await _context.SaveChangesAsync();
+            await _context.Database.CommitTransactionAsync();
+            return softwareLicenseModel;
         }
 
-        public Task<List<SoftwareLicenseModel>> GetAllSoftwareLicenses()
+        public async Task<List<SoftwareLicenseModel>> GetAllSoftwareLicenses()
         {
-            throw new System.NotImplementedException();
+            await _context.Database.BeginTransactionAsync();
+            
+            var softwareLicensesModels = 
+                from model in _context.Set<SoftwareLicenseModel>() 
+                select model;
+                
+            await _context.SaveChangesAsync();
+            await _context.Database.CommitTransactionAsync();
+            return softwareLicensesModels.ToList();
         }
     }
 }

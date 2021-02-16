@@ -6,8 +6,8 @@ namespace CTI.Asset.Management.Domain.Entities
 {
     public class SoftwareLicense : AuditableEntity, IHasDomainEvent
     {
-        public SoftwareLicenseId SoftwareLicenseId { get; }
-        public SoftwareLicenseActivationKey SoftwareLicenseActivationKey { get; }
+        public SoftwareLicenseId SoftwareLicenseId { get; set; }
+        public SoftwareLicenseActivationKey SoftwareLicenseActivationKey { get; set; }
 
         public SoftwareLicense(SoftwareLicenseId softwareLicenseId, SoftwareLicenseActivationKey softwareLicenseActivationKey)
         {

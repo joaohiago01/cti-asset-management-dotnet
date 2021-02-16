@@ -7,6 +7,17 @@ namespace CTI.Asset.Management.Domain.ValueObjects
     public class SoftwareLicenseId : ValueObject
     {
         public Guid Id { get; }
+
+        public SoftwareLicenseId(Guid id)
+        {
+            Id = id;
+        }
+
+        public SoftwareLicenseId()
+        {
+            
+        }
+        
         protected override IEnumerable<object> GetEqualityComponents()
         {
             yield return Id;

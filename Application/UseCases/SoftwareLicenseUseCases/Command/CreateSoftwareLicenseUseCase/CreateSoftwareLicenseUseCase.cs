@@ -32,13 +32,13 @@ namespace CTI.Asset.Management.Application.UseCases.SoftwareLicenseUseCases.Comm
             
             softwareLicense.DomainEvents.Add(new SoftwareLicenseCreatedEvent(softwareLicense));
 
-            var readSoftwareLicense = new ReadSoftwareLicenseDto
+            var readSoftwareLicenseDto = new ReadSoftwareLicenseDto
             {
                 Id = registeredSoftwareLicense.Id,
                 ActivationKey = registeredSoftwareLicense.ActivationKey
             };
 
-            return readSoftwareLicense;
+            return readSoftwareLicenseDto;
         }
     }
 }

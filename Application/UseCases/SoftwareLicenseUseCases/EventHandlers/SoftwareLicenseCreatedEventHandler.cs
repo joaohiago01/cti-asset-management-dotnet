@@ -20,7 +20,7 @@ namespace CTI.Asset.Management.Application.UseCases.SoftwareLicenseUseCases.Even
         {
             var domainEvent = notification.DomainEvent;
 
-            _logger.LogInformation("CleanArchitecture Domain Event: {DomainEvent}", domainEvent.GetType().Name);
+            _logger.LogInformation("Domain Event: {DomainEvent}", domainEvent.GetType().Name);
 
             return Task.CompletedTask;
         }
